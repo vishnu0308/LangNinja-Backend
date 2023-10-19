@@ -1,0 +1,33 @@
+{
+  "name": "langninja-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config .",
+    "dev": "npx -r dotenv/config nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-xss-sanitizer": "^1.1.6",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "mime-types": "^2.1.35",
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.5.3",
+    "nodemailer": "^6.9.5",
+    "socket.io": "^4.6.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1"
+  }
+}
