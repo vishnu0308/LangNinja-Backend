@@ -1,0 +1,1 @@
+exports.isAuth = require("./is-auth");
