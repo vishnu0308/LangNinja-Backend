@@ -2,7 +2,6 @@ const { passportGoogle, sessionManager } = require("../services");
 const catchAsync = require('../utilities/catch-async');
 const {throwError, sendResponse } = require("../utilities/responses")
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const {generateToken, verifyToken} = require("../utilities/jwt");
 const randomStringGen = require("../utilities/random-string-gen");
@@ -60,6 +59,7 @@ exports.signUp = catchAsync( async (req, res) => {
       password: hashedPassword,
       verified: false,
       verificationString: randomString,
+      languages: [],
     });
     await newUser.save();
     // send verification email
@@ -175,7 +175,7 @@ exports.forgotPassword = catchAsync( async(req,res) => {
   const url = `${process.env.REACT_APP_FRONTEND_URL}/resetuserpassword/?verificationtoken=${verificationToken}`
   transporter.sendMail({
     to: email.trim().toLowerCase(),
-    subject: 'Change password',
+    subject: 'Steps to change password for your LangNinja account',
     html: `Click <a href = '${url}'>here</a> to change your password.`
   })
   await sessionManager.deleteSessionsByUserId(user._id);

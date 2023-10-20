@@ -22,6 +22,7 @@ passport.use(
               name: profile.displayName,
               email: profile.emails[0].value,
               verified: true,
+              languages:[],
             });
             await user.save();
           }
