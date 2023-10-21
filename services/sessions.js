@@ -9,7 +9,7 @@ exports.createSession = async (user_id, ip, userAgent) => {
       user_id,
       ip,
       userAgent,
-      "expiryDate" : expiryDate(120), 
+      expiryDate : expiryDate(5*120), 
     });
     const existingSession = await Session.findOne({user_id,ip,userAgent});
     if(existingSession){

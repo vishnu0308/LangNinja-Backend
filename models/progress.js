@@ -12,10 +12,20 @@ const progressSchema = new mongoose.Schema({
     },
     level: {
         type: Number,
+        get: v => parseFloat(v.toFixed(2)), 
+        set: v => parseFloat(v.toFixed(2))
     },
     excercise_history: [{
-        level: Number,
-        score: Number
+        level: {
+            type: Number,
+            get: v => parseFloat(v.toFixed(2)), 
+            set: v => parseFloat(v.toFixed(2))
+        },
+        score: {
+            type: Number,
+            get: v => parseFloat(v.toFixed(2)), 
+            set: v => parseFloat(v.toFixed(2))
+        }
     }],
 });
 
