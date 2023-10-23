@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 
 const generateQuestionsBasedOnLevel = async (language, level) => {
     try{
-        const total_questions = 5;
+        const total_questions = 10;
         const base_level = parseInt(level);
         console.log("base level : ",base_level);
         const sub_level = (level%1)*2; //specifies the fraction of questions that needs to be of level (base+1)
