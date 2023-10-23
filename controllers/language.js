@@ -116,10 +116,18 @@ exports.unlockLanguage = catchAsync(async (req,res) => {
 });
 
 exports.getUserLanguages = catchAsync(async(req,res)=>{
-    sendResponse(res,{languages:req.auth.user.languages});
+    const user_id = req.auth.user.id;
+    const progresses = await Progress.find({user_id});
+    const response_list = progresses.map((progress)=>(
+        {
+            language: progress.language,
+            level : progress.level
+        }
+    ))
+    sendResponse(res,{languages:response_list});
 });
 
 exports.getAllLanguages = catchAsync(async(req,res)=>{
-    const languages = await Progress.distinct('language');
+    const languages = await Question.distinct('language');
     sendResponse(res,{languages});
 });

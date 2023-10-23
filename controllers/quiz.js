@@ -85,7 +85,7 @@ exports.getQuizQuestions = catchAsync(async(req,res)=>{
     ));
     const questions_list_complete = questions_generated.map(question => ( 
             {
-                question, 
+                question_id:question, 
                 option_choosed: -1
             }
     ));
@@ -96,10 +96,11 @@ exports.getQuizQuestions = catchAsync(async(req,res)=>{
         questions_list
     })
     await newQuiz.save();
-    sendResponse(res,{questions_list: questions_list_complete});
+    sendResponse(res,{questions: questions_list_complete});
 });
 
 exports.saveAnswer = catchAsync(async(req,res)=>{
+    console.log(req.body);
     const user_id = req.auth.user.id;
     const language = req.body.language.trim().toLowerCase();
     const question_id = new mongoose.Types.ObjectId(req.body.question_id.trim());
@@ -143,10 +144,10 @@ exports.submitQuiz = catchAsync(async(req,res)=>{
         return;
     }
     const scores = quiz.questions_list.map((question) => (
-        (question.question_id.answer == question.option_choosed)?question.question_id.marks:0
+        (question.question_id.answer == question.option_choosed+1)?question.question_id.marks:0
     ));
     const actual_answers = quiz.questions_list.map((question) => (
-        question.question_id.answer
+        question.question_id.answer-1
     ));
     const user_answers = quiz.questions_list.map((question) => (
         question.option_choosed

@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
  * @param {String | Number} expiry Expiry time of the token
  * @returns JWT Token
  */
-exports.generateToken = (data, expiry = '1h') => {
+exports.generateToken = (data, expiry = '4h') => {
     const token = jwt.sign(data, process.env.JWT_SECRET, { expiresIn: expiry });
     console.log("token generated : ",token);
     return token;
