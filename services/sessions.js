@@ -27,7 +27,7 @@ exports.verifySession =  async (sessionId, ip, userAgent) => {
     const session = await Session.findOne({_id : sessionId});
     console.log(sessionId)
     console.log(session)
-    if (!session || session.ip !== ip || session.userAgent !== userAgent) {
+    if (!session || session.ip !== ip ) {
       throwError("Session does not exist","FORBIDDEN","403")
       return null;
     }
